@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Required for Toast
+import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Required for Toast
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -34,6 +34,11 @@ const Login = () => {
         }, 1500);
       } else {
         setError(res.data.message || "Login failed");
+
+        // ✅ Show Error Toast
+        const toastElement = document.getElementById("errorToast");
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
       }
     } catch (err) {
       const errorMessage = err.response?.data?.message || "Server Error";
@@ -93,9 +98,9 @@ const Login = () => {
         </form>
 
         <div className="text-center mt-3">
-          <a href="#" className="text-decoration-none">
+          <Link to="/forgot-password" className="text-decoration-none">
             Forgot Password?
-          </a>
+          </Link>
         </div>
 
         <div className="text-center mt-2">
