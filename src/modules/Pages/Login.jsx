@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Required for Toast
 
 const Login = () => {
   const [email, setEmail] = useState("");
