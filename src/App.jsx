@@ -24,8 +24,6 @@ const App = () => {
           </PrivateRoute>
          
           } />
-        <Route path="/contactForm" element={<ContactForm />} />
-        <Route path="/services" element={<ServicesPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<ProductDetails />} />

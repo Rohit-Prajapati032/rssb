@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Required for Toast
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,29 +15,34 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-       `https://backend-rssb.onrender.com/api/v1/users/login`,
+        `https://backend-rssb.onrender.com/api/v1/users/login`,
         { email, password }
       );
-      console.log("response is ", res);
 
       if (res.data.token) {
-        // Login success
-        alert("Login Successful!");
-        console.log(res.data);
+        // ✅ Show Success Toast
+        const toastElement = document.getElementById("successToast");
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
 
-        // Save token if backend returns JWT
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-        }
+        // ✅ Save token
+        localStorage.setItem("token", res.data.token);
 
-        // Redirect to dashboard or home page
-        navigate("/");
+        // ✅ Redirect after short delay
+        setTimeout(() => {
+          navigate("/");
+        }, 1500);
       } else {
         setError(res.data.message || "Login failed");
       }
     } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.message || "Server Error");
+      const errorMessage = err.response?.data?.message || "Server Error";
+      setError(errorMessage);
+
+      // ✅ Show Error Toast
+      const toastElement = document.getElementById("errorToast");
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();
     }
   };
 
@@ -95,9 +101,51 @@ const Login = () => {
         <div className="text-center mt-2">
           Don't have an account?{" "}
           <a href="/register" className="text-decoration-none text-primary">
-            register
+            Register
           </a>
         </div>
+      </div>
+
+      {/* ✅ Success Toast */}
+      <div
+        className="toast position-fixed bottom-0 end-0 p-3"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="successToast"
+        data-bs-delay="2000"
+      >
+        <div className="toast-header">
+          <strong className="me-auto text-success">Success</strong>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="toast-body">Login Successful!</div>
+      </div>
+
+      {/* ✅ Error Toast */}
+      <div
+        className="toast position-fixed bottom-0 end-0 p-3"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        id="errorToast"
+        data-bs-delay="3000"
+      >
+        <div className="toast-header bg-danger text-white">
+          <strong className="me-auto">Error</strong>
+          <button
+            type="button"
+            className="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="toast-body">{error || "Something went wrong!"}</div>
       </div>
     </div>
   );

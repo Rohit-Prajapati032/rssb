@@ -64,16 +64,6 @@ const Navbar = () => {
                 Add Product
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/services">
-                Services
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contactForm">
-                Contact
-              </Link>
-            </li>
 
             {/* ✅ Login / Logout Button */}
             <li className="nav-item ms-3">
