@@ -5,6 +5,7 @@ import AddProduct from "./modules/Product/components/AddProductForm";
 import ProductDetails from "./modules/Product/Pages/ProductDetailsPage";
 import Navbar from "./shared/components/Navbar";
 import PrivateRoute from "./modules/Auth/components/PrivateRoute";
+import Home from "./modules/Pages/Home";
 
 
 const App = () => {
