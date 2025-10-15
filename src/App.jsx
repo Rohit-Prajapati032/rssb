@@ -1,11 +1,6 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-
-import ContactForm from "./modules/Pages/ContactForm";
-import Home from "./modules/Pages/Home";
 import Login from "./modules/Pages/Login";
 import Register from "./modules/Pages/Register";
-import ServicesPage from "./modules/Pages/ServicesPage";
 import AddProduct from "./modules/Product/components/AddProductForm";
 import ProductDetails from "./modules/Product/Pages/ProductDetailsPage";
 import Navbar from "./shared/components/Navbar";
