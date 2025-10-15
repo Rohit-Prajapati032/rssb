@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js"; // ✅ Required for Toast
 
 const Login = () => {
@@ -100,9 +100,9 @@ const Login = () => {
 
         <div className="text-center mt-2">
           Don't have an account?{" "}
-          <a href="/register" className="text-decoration-none text-primary">
+          <Link to="/register" className="text-decoration-none text-primary">
             Register
-          </a>
+          </Link>
         </div>
       </div>
 
